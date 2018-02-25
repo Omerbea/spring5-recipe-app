@@ -1,6 +1,6 @@
 package guru.springframework.controllers;
 
-import guru.springframework.repositories.CategoryRepository;
+import guru.springframework.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class indexController {
 
-    private CategoryRepository cat;
+    private final RecipeService recipeService;
 
-    public indexController(CategoryRepository cat) {
-        this.cat = cat;
+    public indexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     @GetMapping("/index")
     public String getCat(Model model){
-        Long num = Long.valueOf(2);
-        System.out.println(cat.findById(num).get().getDescription());
+
+        model.addAttribute("recipes" , recipeService.getRecipes());
         return "index";
     }
 }
