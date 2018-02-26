@@ -35,6 +35,7 @@ public class Recipe {
     private Difficulty difficulty;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @Lob
     private Notes notes;
 
     @ManyToMany

@@ -23,4 +23,18 @@ public class RecipeService implements IRecipeSerivce {
         recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
         return recipeSet;
     }
+
+    @Override
+    public Recipe getRecipeById(Long id) {
+
+        Recipe recipe = new Recipe();
+        try {
+            recipe = recipeRepository.findById(id).get();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return recipe;
+    }
+
+
 }
